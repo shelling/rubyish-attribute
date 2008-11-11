@@ -3,7 +3,7 @@
 =head1 NAME
     autobox::Accessor - this provide ruby-like accessor builder: attr_accessor, attr_writer and attr_reader.
 =cut
-package rubyish::Attribute;
+package Rubyish::Attribute;
 
 use Sub::Exporter;
 Sub::Exporter::setup_exporter({ 
