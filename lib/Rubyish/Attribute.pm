@@ -18,7 +18,13 @@ Sub::Exporter::setup_exporter({
 our $VERSION = "0.01";
 
 =head1 SYNOPSIS
+    package Animal;
+    
+    use Rubyish::Attribute qw(:all);
 
+    attr_accessor( [qw(name address jobs resume)] )
+
+    1;
 =cut
 
 =head1 FUNCTION
