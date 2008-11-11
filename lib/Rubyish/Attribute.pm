@@ -7,7 +7,8 @@ package Rubyish::Attribute;
 
 use Sub::Exporter;
 Sub::Exporter::setup_exporter({ 
-    exports => [ qw(attr_accessor attr_writer attr_reader) ] 
+    exports => [ qw(attr_accessor attr_writer attr_reader) ] ,
+    groups  => { defaults => [ qw(attr_accessor attr_writer attr_reader) ] },
 });
 
 

@@ -1,7 +1,7 @@
 package Animal;
-use Rubyish::Attribute;
+use Rubyish::Attribute qw(:all);
 
-attr_accessor "name";
+attr_accessor([ qw(name) ]);
 
 sub new {
     my ($class) = @_;
