@@ -28,8 +28,8 @@ our $VERSION = "0.01";
 =cut
 sub attr_accessor {
     no strict;
-    my ($class, $methods) = @_;
-    $class = (caller)[0];
+    my $methods = shift;
+    my $class = (caller)[0];
 
     my $make_accessor = sub {
         my $field = shift;
@@ -54,8 +54,8 @@ sub attr_accessor {
 =cut
 sub attr_reader {
     no strict;
-    my ($class, $methods) = @_;
-    $class = (caller)[0];
+    my $methods = shift;
+    my $class = (caller)[0];
 
     my $make_reader = sub {
         my $field = shift;
@@ -75,8 +75,8 @@ sub attr_reader {
 =cut
 sub attr_writer {
     no strict;
-    my ($class, $methods) = @_;
-    $class = (caller)[0];
+    my $methods = shift;
+    my $class = (caller)[0];
 
     my $make_writer = sub {
         my $field = shift;
