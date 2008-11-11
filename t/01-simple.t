@@ -9,10 +9,15 @@ use lib 't/lib';
 use lib 'lib';
 use Animal;
 
-plan tests => 1;
+plan tests => 2;
 
 # Test basic Animal accessors;
 my $dog_name = "rock";
 my $dogy = Animal->new()->name($dog_name);
-ok( $dogy->can("name") );
-print "we named the dog $dog_name and it now named " . $dogy->name() . "\n";
+
+ok( $dogy->can("name"), "There is an accessor 'name'" );
+
+$dogy->name($dog_name);
+
+is($dogy->name, $dog_name, "we named the dog $dog_name"); 
+
