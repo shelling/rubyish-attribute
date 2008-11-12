@@ -8,7 +8,8 @@ WriteMakefile(
     ABSTRACT_FROM     => 'lib/Rubyish/Attribute.pm',
     AUTHOR            => 'shelling, <navyblueshellingford@gmail.com>',
     PREREQ_PM         => {
-        'Test::More' => 0,
+            'Test::More'    => 0,
+            'Sub::Exporter' => 0,
     },
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean               => { FILES => 'Rubyish-Attribute-*' },
