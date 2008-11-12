@@ -28,9 +28,8 @@ our $VERSION = "0.01";
         
         use Rubyish::Attribute qw(:all); # use :all to import attr_accessor, attr_writer and attr_reader
 
-        attr_accessor( [qw(name color type)] ); # pass a arrayref as the only one parameter
-        # now we have the getter double as setter
-        # named as name, color and type
+        attr_accessor( [qw(name color type)] ); 
+        # pass a arrayref as the only one parameter
 
         # then create a constructer based on hashref
         sub new {
@@ -41,18 +40,21 @@ our $VERSION = "0.01";
         1;
     }
    
-    # because all setter return instance itself
-    # now we can manipulate object in ruby way more than ruby
-    $dogy = Animal->new()->name("rock")->color("black")->type("unknown");
+    $dogy = Animal->new()->name("rock")->color("black")->type("unknown"); # new Animal with three attribute
 
-    # use reader to access instance data
-    say $dogy->name();  # rock
-    say $dogy->color(); # black
-    say $dogy->type();  # unknown
+    say $dogy->name;  #=> rock
+    say $dogy->color; #=> black
+    say $dogy->type;  #=> unknown
 =cut
 
 =head1 FUNCTION
-    
+    attr_accessor provides getters double as setters.
+    Because all setter return instance itself, now we can manipulate object in ruby way more than ruby.
+
+        attr_accessor( [qw(name color type master)] )
+        $dogy = Animal->new()->name("lucky")->color("white")->type("unknown")->master("shelling");
+
+    Each attribute could be read by getter as showing in synopsis.
 =cut
 
 =head2 attr_accessor
@@ -83,10 +85,11 @@ sub attr_accessor {
 
 =head2 attr_reader
     attr_reader create only getter for the class you call it
-    If we call attr_reader([qw(name)]) in Animal package
-    $dogy = Animal->new({name => "rock"})
-    $dogy->name()       # rock
-    $dogy->name("jack") # cause an exception.
+
+        attr_reader( [qw(name)] ) # pass arrayref
+        $dogy = Animal->new({name => "rock"}) # if we write initialize function in constructor
+        $dogy->name()       #=> rock
+        $dogy->name("jack") #=> cause an exception.
 =cut
 sub attr_reader {
     no strict;
@@ -108,10 +111,11 @@ sub attr_reader {
 
 =head2 attr_writer
     attr_writer create only setter for the class you call it.
-    If we call attr_writer([qw(name)]) in Animal package,
-    $dogy = Animal->new({name => "rock"}) # initialize
-    $dogy->name("jack") # rename it and get the callback itself 
-    $dogy->name         # undef
+
+        attr_writer( [qw(name)] ) # pass arrayref
+        $dogy = Animal->new()->name("lucky") # initialize and set and get instance itself
+        $dogy->name("jack") # rename it and get the instance itself 
+        $dogy->name         # undef
 =cut
 sub attr_writer {
     no strict;
