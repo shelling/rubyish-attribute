@@ -1,5 +1,5 @@
 =head1 NAME
-    autobox::Accessor - provide ruby-like accessor builder: attr_accessor, attr_writer and attr_reader.
+    Rubyish::Attribute - provide ruby-like accessor builder: attr_accessor, attr_writer and attr_reader.
 =cut
 package Rubyish::Attribute;
 
@@ -82,11 +82,11 @@ sub attr_accessor {
 }
 
 =head2 attr_reader
-    attr_reader create only getter for the class you call it.
-    for example, if we call attr_reader([qw(name)]) in Animal package,
-    and $dogy = Animal->new({name => "rock"}).
-    Now $dogy->name() return the dog's name "rock",
-    but $dogy->name("jack") would cause an exception.
+    attr_reader create only getter for the class you call it
+    If we call attr_reader([qw(name)]) in Animal package
+    $dogy = Animal->new({name => "rock"})
+    $dogy->name()       # rock
+    $dogy->name("jack") # cause an exception.
 =cut
 sub attr_reader {
     no strict;
@@ -107,7 +107,11 @@ sub attr_reader {
 }
 
 =head2 attr_writer
-
+    attr_writer create only setter for the class you call it.
+    If we call attr_writer([qw(name)]) in Animal package,
+    $dogy = Animal->new({name => "rock"}) # initialize
+    $dogy->name("jack") # rename it and get the callback itself 
+    $dogy->name         # undef
 =cut
 sub attr_writer {
     no strict;
@@ -133,10 +137,20 @@ sub attr_writer {
     }
 }
 
+=head1 SEE ALSO
+    autobox::Core
+    List::Rubyish
+
 =head1 AUTHOR
     shelling <navyblueshellingford at gmail.com>
     gugod    <gugod at gugod.org>
-=cut
+
+=head2 acknowledgement
+    Thanks to gugod providing testing script and leading me on the way of perl
+
+=head1 REPOSITORY
+    host:       http://github.com/shelling/rubyish-attribute/tree/master
+    checkout:   git clone git://github.com/shelling/rubyish-attribute.git
 
 =head1 BUGS
     please report bugs to <shelling at cpan.org> or <gugod at gugod.org>
