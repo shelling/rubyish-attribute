@@ -45,9 +45,10 @@ our $VERSION = "0.01";
     say $dogy->name;  #=> rock
     say $dogy->color; #=> black
     say $dogy->type;  #=> unknown
-=cut
 
-=head1 FUNCTION
+=head1 FUNCTIONS
+
+=head2 attr_accessor
     attr_accessor provides getters double as setters.
     Because all setter return instance itself, now we can manipulate object in ruby way more than ruby.
 
@@ -55,10 +56,6 @@ our $VERSION = "0.01";
         $dogy = Animal->new()->name("lucky")->color("white")->type("unknown")->master("shelling");
 
     Each attribute could be read by getter as showing in synopsis.
-=cut
-
-=head2 attr_accessor
-
 =cut
 sub attr_accessor {
     no strict;
