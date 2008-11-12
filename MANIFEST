@@ -2,5 +2,7 @@ Changes
 Makefile.PL
 MANIFEST
 README
-t/Rubyish-Attribute.t
 lib/Rubyish/Attribute.pm
+t/00-load.t
+t/01-simple.t
+t/lib/Animal.pm
