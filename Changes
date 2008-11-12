@@ -1,0 +1,6 @@
+Revision history for Perl extension Rubyish::Attribute.
+
+0.01  Wed Nov 12 12:18:47 2008
+	- original version; created by h2xs 1.23 with options
+		-X -n Rubyish::Attribute
+

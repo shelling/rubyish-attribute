@@ -1,0 +1,6 @@
+Changes
+Makefile.PL
+MANIFEST
+README
+t/Rubyish-Attribute.t
+lib/Rubyish/Attribute.pm
