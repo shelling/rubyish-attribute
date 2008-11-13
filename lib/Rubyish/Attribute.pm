@@ -166,6 +166,7 @@ L<autobox::Core>, L<List::Rubyish>
 =head1 AUTHOR
 
 shelling <navyblueshellingford at gmail.com>
+
 gugod    <gugod at gugod.org>
 
 =head2 acknowledgement
