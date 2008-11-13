@@ -3,6 +3,8 @@ Makefile.PL
 MANIFEST
 README
 lib/Rubyish/Attribute.pm
+t/lib/Animal.pm
 t/00-load.t
 t/01-simple.t
-t/lib/Animal.pm
+t/02-no-writer.t
+t/03-no-reader.t

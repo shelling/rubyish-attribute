@@ -1,12 +1,9 @@
-#!/usr/bin/env perl
-
 use strict;
 use warnings;
 
 use Test::More;
 
 use lib 't/lib';
-use lib 'lib';
 use Animal;
 
 plan tests => 2;
@@ -15,9 +12,6 @@ plan tests => 2;
 my $dog_name = "rock";
 my $dogy = Animal->new()->name($dog_name);
 
-ok( $dogy->can("name"), "There is an accessor 'name'" );
-
-$dogy->name($dog_name);
-
+ok($dogy->can("name"), "There is an accessor 'name'");
 is($dogy->name, $dog_name, "we named the dog $dog_name"); 
 
