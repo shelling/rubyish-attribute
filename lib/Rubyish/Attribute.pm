@@ -169,6 +169,8 @@ L<Sub::Exporter>, L<autobox::Core>, L<List::Rubyish>
 
 L<http://ruby-doc.org/core-1.8.7/classes/Module.html#M000423>
 
+L<http://chupei.pm.org/2008/11/rubyish-attribute.html> chinese introduction
+
 =head1 AUTHOR
 
 shelling <navyblueshellingford at gmail.com>
