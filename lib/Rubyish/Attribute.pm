@@ -165,7 +165,9 @@ L<Sub::Exporter>
 
 =head1 SEE ALSO
 
-L<autobox::Core>, L<List::Rubyish>
+L<Sub::Exporter>, L<autobox::Core>, L<List::Rubyish>
+
+L<http://ruby-doc.org/core-1.8.7/classes/Module.html#M000423>
 
 =head1 AUTHOR
 
