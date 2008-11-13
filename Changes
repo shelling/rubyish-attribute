@@ -1,7 +1,8 @@
 Revision history for Perl extension Rubyish::Attribute.
 
+0.02  Nov 13 2008
+    - correct the writing format of POD
+
 0.01  Nov 12 2008
     - original version; created by h2xs 1.23 with options
         -X -n Rubyish::Attribute
-0.02  Nov 13 2008
-    - correct the writing format of POD
