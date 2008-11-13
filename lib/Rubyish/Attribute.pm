@@ -16,7 +16,7 @@ Sub::Exporter::setup_exporter({
 
 =head1 VERSION
 
-    version 0.02
+version 0.02
 
 =cut
 
@@ -159,6 +159,10 @@ sub attr_writer {
     }
 }
 
+=head1 DEPENDENCE
+
+L<Sub::Exporter>
+
 =head1 SEE ALSO
 
 L<autobox::Core>, L<List::Rubyish>
@@ -182,6 +186,12 @@ checkout:   git clone git://github.com/shelling/rubyish-attribute.git
 =head1 BUGS
 
 please report bugs to <shelling at cpan.org> or <gugod at gugod.org>
+
+=head1 COPYRIGHT & LICENCE 
+
+Coryright © 2008 shelling, gugod, all rights reserved.
+
+This program is free software; you can redistribute it and/or modify it under the same terms as Perl itself.
 
 =cut
 
