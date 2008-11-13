@@ -8,9 +8,9 @@ attr_writer( [qw(type)] );
 sub new {
     my ($class, $args) = @_;
     my $self = bless {}, $class;
-    $self->{name} = $args->{name} if $args->{name};
-    $self->{color} = $args->{color} if $args->{color};
-    $self->{type} = $args->{type} if $args->{type};
+    for (keys %$args) {
+        $self->{$_} = $args->{$_};
+    }
     $self;
 }
 
