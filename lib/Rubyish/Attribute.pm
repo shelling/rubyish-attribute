@@ -114,8 +114,12 @@ sub attr_reader {
     my $make_reader = sub {
         my $field = shift;
         return sub {
-            my $self = shift;
-            $self->{$field};
+            my ($self, $arg) = @_;
+            if ($arg) {
+                return undef; # return undef because no writer
+            } else {
+                $self->{$field};
+            }
         }
     };
     
@@ -142,7 +146,6 @@ sub attr_writer {
 
     my $make_writer = sub {
         my $field = shift;
-
         return sub {
             my ($self, $arg) = @_;
             if ($arg) {
