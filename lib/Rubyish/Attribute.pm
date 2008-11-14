@@ -102,7 +102,7 @@ attr_reader create only getter for the class you call it
     attr_reader( [qw(name)] ) # pass an arrayref
     $dogy = Animal->new({name => "rock"}) # if we write initialize function in constructor
     $dogy->name()       #=> rock
-    $dogy->name("jack") #=> cause an exception.
+    $dogy->name("jack") #=> undef (also print err msg)
 
 =cut
 
@@ -133,10 +133,10 @@ sub attr_reader {
 
 attr_writer create only setter for the class you call it.
 
-    attr_writer( [qw(name)] ) # pass arrayref
+    attr_writer( [qw(name)] ) # pass an arrayref
     $dogy = Animal->new()->name("lucky") # initialize and set and get instance itself
     $dogy->name("jack") #=> instance itself 
-    $dogy->name         #=> undef
+    $dogy->name         #=> undef (also print err msg)
 
 =cut
 
