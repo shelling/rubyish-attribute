@@ -6,9 +6,11 @@ use Test::More;
 use lib 't/lib';
 use Animal;
 
-plan tests => 2;
+plan tests => 3;
 
 # There is writer, no reader;
+# $dogy->type #=> undef
+# $dogy->type("newtype") #=> $dogy
 my $dog_name = "rock";
 my $dog_color = 'black';
 my $dog_type = "unknown";
@@ -20,5 +22,6 @@ my $dogy = Animal->new({
 });
 
 not ok($dogy->can("type"), "There is no reader 'type'");
+is($dogy->type("newtype"),$dogy, "Call setter and return itself");
 isnt($dogy->type, $dog_type, "There is no reader here.");
 

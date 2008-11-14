@@ -116,6 +116,7 @@ sub attr_reader {
         return sub {
             my ($self, $arg) = @_;
             if ($arg) {
+                print "err - $field is only writer\n";
                 return undef; # return undef because no writer
             } else {
                 $self->{$field};
@@ -151,8 +152,9 @@ sub attr_writer {
             if ($arg) {
                 $self->{$field} = $arg;
                 $self;
-            } else {            # return undef because no reader 
-                return undef;
+            } else {
+                print "err - $field is only writer\n";
+                return undef;            # return undef because no reader 
             }
         }
     };
