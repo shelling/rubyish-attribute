@@ -59,7 +59,7 @@ our $VERSION = "0.03";
 
 =head1 FUNCTIONS
 
-=head2 attr_accessor
+=head2 attr_accessor(\@arrayref)
 
 attr_accessor provides getters double as setters.
 Because all setter return instance itself, now we can manipulate object in ruby way more than ruby.
@@ -95,7 +95,7 @@ sub attr_accessor {
     }
 }
 
-=head2 attr_reader
+=head2 attr_reader(\@arrayref)
 
 attr_reader create only getter for the class you call it
 
@@ -129,7 +129,7 @@ sub attr_reader {
     }
 }
 
-=head2 attr_writer
+=head2 attr_writer(\@arrayref)
 
 attr_writer create only setter for the class you call it.
 
