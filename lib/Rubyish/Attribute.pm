@@ -102,7 +102,7 @@ attr_reader create only getter for the class you call it
     attr_reader( [qw(name)] ) # pass an arrayref
     $dogy = Animal->new({name => "rock"}) # if we write initialize function in constructor
     $dogy->name()       #=> rock
-    $dogy->name("jack") #=> undef (also print err msg)
+    $dogy->name("jack") #=> undef (with warn msg)
 
 =cut
 
@@ -116,8 +116,8 @@ sub attr_reader {
         return sub {
             my ($self, $arg) = @_;
             if ($arg) {
-                print "err - $field is only writer\n";
-                return undef; # return undef because no writer
+                warn "error - $field is only reader\n";
+                return; # because no writer
             } else {
                 $self->{$field};
             }
@@ -136,7 +136,7 @@ attr_writer create only setter for the class you call it.
     attr_writer( [qw(name)] ) # pass an arrayref
     $dogy = Animal->new()->name("lucky") # initialize and set and get instance itself
     $dogy->name("jack") #=> instance itself 
-    $dogy->name         #=> undef (also print err msg)
+    $dogy->name         #=> undef (with warn msg)
 
 =cut
 
@@ -153,8 +153,8 @@ sub attr_writer {
                 $self->{$field} = $arg;
                 $self;
             } else {
-                print "err - $field is only writer\n";
-                return undef;            # return undef because no reader 
+                warn "error - $field is only writer\n";
+                return; # because no reader 
             }
         }
     };
