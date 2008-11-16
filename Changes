@@ -1,5 +1,10 @@
 Revision history for Perl extension Rubyish::Attribute.
 
+0.04  Nov 16 2008
+    - refine doc
+    - fix warn message
+    - add example
+
 0.03  Nov 14 2008
     - return undef and print err msg while invoking forbidden accessor
 
