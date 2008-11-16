@@ -198,7 +198,7 @@ please report bugs to <shelling at cpan.org> or <gugod at gugod.org>
 
 =head1 COPYRIGHT & LICENCE 
 
-Coryright © 2008 shelling, gugod, all rights reserved.
+Copyright © 2008 shelling, gugod, all rights reserved.
 
 This program is free software; you can redistribute it and/or modify it under the same terms as Perl itself.
 
