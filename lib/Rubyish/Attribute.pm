@@ -1,7 +1,7 @@
 
 =head1 NAME
 
-Rubyish::Attribute - provide ruby-like accessor builder: attr_accessor, attr_writer and attr_reader.
+Rubyish::Attribute - ruby-like accessor builder: attr_accessor, attr_writer and attr_reader.
 
 =cut
 
