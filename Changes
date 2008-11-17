@@ -1,5 +1,9 @@
 Revision history for Perl extension Rubyish::Attribute.
 
+0.05  Nov 17 2008
+    - default import three functions, qw(:all) no longer required
+    - example for meta programming
+
 0.04  Nov 16 2008
     - refine doc
     - fix warn message
