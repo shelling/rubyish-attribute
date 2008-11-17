@@ -12,7 +12,8 @@ use lib 'lib';
     package Animal;
 
     use Data::Dumper;
-    use Rubyish::Attribute qw(:all);
+    use self;
+    use Rubyish::Attribute;
     
     attr_accessor( [qw(name)] );
     attr_writer( [qw(age)] );
@@ -25,11 +26,11 @@ use lib 'lib';
         $self;
     }
 
-    sub inspect { print Dumper($_[0]) }
+    sub inspect { print Dumper(self) }
 
     sub add_attr_accessor {
         attr_accessor($_[1]);
-        $_[0];
+        self;
     }
 
     1;
