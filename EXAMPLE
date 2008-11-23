@@ -13,7 +13,7 @@ use lib 'lib';
 
     use Data::Dumper;
     use self;
-    use Rubyish::Attribute;
+    use Rubyish::Attribute qw(:all);
     
     attr_accessor( [qw(name)] );
     attr_writer( [qw(age)] );

@@ -2,7 +2,7 @@ Changes
 Makefile.PL
 MANIFEST
 README
-example.pl
+EXAMPLE
 lib/Rubyish/Attribute.pm
 t/lib/Animal.pm
 t/00-load.t
