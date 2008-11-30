@@ -1,9 +1,9 @@
 package Animal;
 use Rubyish::Attribute qw(:all);
 
-attr_accessor( [qw(name)] );
-attr_reader( [qw(color)] );
-attr_writer( [qw(type)] );
+attr_accessor qw(name);
+attr_reader qw(color);
+attr_writer qw(type);
 
 sub new {
     my ($class, $args) = @_;
