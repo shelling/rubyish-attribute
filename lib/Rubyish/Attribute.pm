@@ -37,8 +37,8 @@ our $VERSION = "0.05";
         use Rubyish::Attribute; 
         # import attr_accessor, attr_writer and attr_reader
 
-        attr_accessor( [qw(name color type)] ); 
-        # pass an arrayref as the only one parameter
+        attr_accessor "name", "color", "type"; 
+        # pass a list as the only one parameter
 
         # then create a constructer based on hashref
         sub new {
@@ -59,12 +59,12 @@ our $VERSION = "0.05";
 
 =head1 FUNCTIONS
 
-=head2 attr_accessor(\@arrayref)
+=head2 attr_accessor(@list)
 
 attr_accessor provides getters double as setters.
 Because all setter return instance itself, now we can manipulate object in ruby way more than ruby.
 
-    attr_accessor( [qw(name color type master)] )
+    attr_accessor qw(name color type master)
     $dogy = Animal->new()->name("lucky")->color("white")
                   ->type("unknown")->master("shelling");
 
@@ -74,7 +74,6 @@ Each attribute could be read by getter as showing in synopsis.
 
 sub attr_accessor {
     no strict;
-    my $methods = shift;
 
     my $make_accessor = sub {
         my $field = shift;
@@ -89,16 +88,16 @@ sub attr_accessor {
         }
     };
 
-    for $field (@$methods) {
+    for my $field (@_) {
         *{(caller)[0] . "::" . $field} = $make_accessor->($field);
     }
 }
 
-=head2 attr_reader(\@arrayref)
+=head2 attr_reader(@list)
 
 attr_reader create only getter for the class you call it
 
-    attr_reader( [qw(name)] ) # pass an arrayref
+    attr_reader qw(name) # pass a list
     $dogy = Animal->new({name => "rock"}) # if we write initialize function in constructor
     $dogy->name()       #=> rock
     $dogy->name("jack") #=> undef (with warn msg)
@@ -107,7 +106,6 @@ attr_reader create only getter for the class you call it
 
 sub attr_reader {
     no strict;
-    my $methods = shift;
 
     my $make_reader = sub {
         my $field = shift;
@@ -122,16 +120,16 @@ sub attr_reader {
         }
     };
     
-    for $field (@$methods) {
+    for my $field (@_) {
         *{(caller)[0] . "::" . $field} = $make_reader->($field);
     }
 }
 
-=head2 attr_writer(\@arrayref)
+=head2 attr_writer(@list)
 
 attr_writer create only setter for the class you call it.
 
-    attr_writer( [qw(name)] ) # pass an arrayref
+    attr_writer qw(name) # pass a list
     $dogy = Animal->new()->name("lucky") # initialize and set and get instance itself
     $dogy->name("jack") #=> instance itself 
     $dogy->name         #=> undef (with warn msg)
@@ -140,7 +138,6 @@ attr_writer create only setter for the class you call it.
 
 sub attr_writer {
     no strict;
-    my $methods = shift;
 
     my $make_writer = sub {
         my $field = shift;
@@ -156,7 +153,7 @@ sub attr_writer {
         }
     };
 
-    for $field (@$methods) {
+    for my $field (@_) {
         *{(caller)[0] . "::" . $field} = $make_writer->($field);
     }
 }
