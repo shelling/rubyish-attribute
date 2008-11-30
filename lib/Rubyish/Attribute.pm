@@ -75,7 +75,6 @@ Each attribute could be read by getter as showing in synopsis.
 sub attr_accessor {
     no strict;
     my $methods = shift;
-    my $class = (caller)[0];
 
     my $make_accessor = sub {
         my $field = shift;
@@ -91,7 +90,7 @@ sub attr_accessor {
     };
 
     for $field (@$methods) {
-        *{$class . "::" . $field} = $make_accessor->($field);
+        *{(caller)[0] . "::" . $field} = $make_accessor->($field);
     }
 }
 
@@ -109,7 +108,6 @@ attr_reader create only getter for the class you call it
 sub attr_reader {
     no strict;
     my $methods = shift;
-    my $class = (caller)[0];
 
     my $make_reader = sub {
         my $field = shift;
@@ -125,7 +123,7 @@ sub attr_reader {
     };
     
     for $field (@$methods) {
-        *{$class . "::" . $field} = $make_reader->($field);
+        *{(caller)[0] . "::" . $field} = $make_reader->($field);
     }
 }
 
@@ -143,7 +141,6 @@ attr_writer create only setter for the class you call it.
 sub attr_writer {
     no strict;
     my $methods = shift;
-    my $class = (caller)[0];
 
     my $make_writer = sub {
         my $field = shift;
@@ -160,7 +157,7 @@ sub attr_writer {
     };
 
     for $field (@$methods) {
-        *{$class . "::" . $field} = $make_writer->($field);
+        *{(caller)[0] . "::" . $field} = $make_writer->($field);
     }
 }
 
