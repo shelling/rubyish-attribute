@@ -72,24 +72,26 @@ Each attribute could be read by getter as showing in synopsis.
 
 =cut
 
+
+sub make_accessor {
+    my $field = shift;
+    return sub {
+        my ($self, $arg) = @_;
+        if ($arg) {
+            $self->{$field} = $arg;
+            $self;
+        }
+        else {
+            $self->{$field};
+        }
+    }
+}
+
 sub attr_accessor {
     no strict;
-
-    my $make_accessor = sub {
-        my $field = shift;
-        return sub {
-            my ($self, $arg) = @_;
-            if ($arg) {
-                $self->{$field} = $arg;
-                $self;
-            } else {
-                $self->{$field};
-            }
-        }
-    };
-
+    my $package = caller;
     for my $field (@_) {
-        *{(caller)[0] . "::" . $field} = $make_accessor->($field);
+        *{"${package}::${field}"} = make_accessor($field);
     }
 }
 
@@ -104,24 +106,25 @@ attr_reader create only getter for the class you call it
 
 =cut
 
+sub make_reader {
+    my $field = shift;
+    return sub {
+        my ($self, $arg) = @_;
+        if ($arg) {
+            warn "error - $field is only reader\n";
+            return;             # because no writer
+        }
+        else {
+            $self->{$field};
+        }
+    }
+};
+
 sub attr_reader {
     no strict;
-
-    my $make_reader = sub {
-        my $field = shift;
-        return sub {
-            my ($self, $arg) = @_;
-            if ($arg) {
-                warn "error - $field is only reader\n";
-                return; # because no writer
-            } else {
-                $self->{$field};
-            }
-        }
-    };
-    
+    my $package = caller;
     for my $field (@_) {
-        *{(caller)[0] . "::" . $field} = $make_reader->($field);
+        *{"${package}::${field}"} = make_reader($field);
     }
 }
 
@@ -136,25 +139,26 @@ attr_writer create only setter for the class you call it.
 
 =cut
 
+sub make_writer {
+    my $field = shift;
+    return sub {
+        my ($self, $arg) = @_;
+        if ($arg) {
+            $self->{$field} = $arg;
+            $self;
+        }
+        else {
+            warn "error - $field is only writer\n";
+            return;             # because no reader 
+        }
+    }
+}
+
 sub attr_writer {
     no strict;
-
-    my $make_writer = sub {
-        my $field = shift;
-        return sub {
-            my ($self, $arg) = @_;
-            if ($arg) {
-                $self->{$field} = $arg;
-                $self;
-            } else {
-                warn "error - $field is only writer\n";
-                return; # because no reader 
-            }
-        }
-    };
-
+    my $package = caller;
     for my $field (@_) {
-        *{(caller)[0] . "::" . $field} = $make_writer->($field);
+        *{"${package}::${field}"} = make_writer($field);
     }
 }
 
