@@ -16,11 +16,11 @@ Sub::Exporter::setup_exporter({
 
 =head1 VERSION
 
-version 0.05
+This document is for version 1.0
 
 =cut
 
-our $VERSION = "0.05";
+our $VERSION = "1.0";
 
 =head1 SYNOPSIS
 
