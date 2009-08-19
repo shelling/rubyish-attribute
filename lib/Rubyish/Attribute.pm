@@ -1,3 +1,4 @@
+package Rubyish::Attribute;
 
 =head1 NAME
 
@@ -5,13 +6,13 @@ Rubyish::Attribute - ruby-like accessor builder: attr_accessor, attr_writer and 
 
 =cut
 
-package Rubyish::Attribute;
+use Want;
 
-use Sub::Exporter;
-Sub::Exporter::setup_exporter({ 
-    exports => [qw(attr_accessor attr_writer attr_reader)],
-    groups  => { default => [qw(attr_accessor attr_writer attr_reader)] },
-});
+sub import {
+  for (qw(attr_accessor attr_reader attr_writer)) {
+    *{(caller)[0] . "::" . $_} = *{$_};
+  }
+}
 
 
 =head1 VERSION
@@ -164,11 +165,11 @@ sub attr_writer {
 
 =head1 DEPENDENCE
 
-L<Sub::Exporter>
+L<Want>
 
 =head1 SEE ALSO
 
-L<Sub::Exporter>, L<autobox::Core>, L<List::Rubyish>
+L<autobox::Core>, L<List::Rubyish>, L<Class::Accessor::Lvalue>, L<Want>
 
 L<http://ruby-doc.org/core-1.8.7/classes/Module.html#M000423>
 
