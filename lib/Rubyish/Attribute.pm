@@ -20,11 +20,11 @@ sub import {
 
 =head1 VERSION
 
-This document is for version 1.0
+This document is for version 1.1
 
 =cut
 
-our $VERSION = "1.0";
+our $VERSION = "1.1";
 
 =head1 SYNOPSIS
 
@@ -48,6 +48,14 @@ our $VERSION = "1.0";
         sub new {
             $class = shift;
             bless {}, $class;
+        }
+
+        sub rename_as {
+          my ($self, $new_name) = @_;
+          __name__ = $new_name;
+
+          # __name__ is accurately a lvalue subroutine &__name__() which refer to $self->{name}
+          # now it looks like a instance variable.
         }
 
         1;

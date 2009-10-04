@@ -8,6 +8,8 @@ WriteMakefile(
     AUTHOR            => 'shelling, <navyblueshellingford@gmail.com>',
     MIN_PERL_VERSION  => '5.010',
     PREREQ_PM         => {
+            PadWalker       =>        0,
+            Want            =>        0,
     },
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean               => { FILES => 'Rubyish-Attribute-* MANIFEST.bak MANIFEST' },
