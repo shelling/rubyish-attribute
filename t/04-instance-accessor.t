@@ -6,7 +6,7 @@ use Animal;
 
 use Test::More;
 
-plan tests => 4;
+plan tests => 5;
 
 my $oreo = Animal->new({
   name  => "oreo",
@@ -19,4 +19,7 @@ can_ok  $oreo,                              qw(__name__ __color__ __type__);
 is      $oreo->instant_name("hello"),       "hello";
 is      $oreo->instant_color,               "black";
 is      $oreo->instant_type,                "unknown";
+
+eval { $oreo->__name__ };
+like    $@,                                 qr(protected),                          $@;
 

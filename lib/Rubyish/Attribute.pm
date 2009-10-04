@@ -185,6 +185,10 @@ sub make_instance_vars_accessor {
   my ($package, $field) = @_;
   eval qq|package $package;
     sub __${field}__ : lvalue {
+      unless ( caller eq $package ) {
+        require Carp;
+        Carp::croak "__${field}__ is a protected method of $package!";
+      }
       \${ peek_my(1)->{\'\$self\'} }->{$field};
     }
   |;
