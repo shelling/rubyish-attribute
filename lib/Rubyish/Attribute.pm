@@ -20,11 +20,11 @@ sub import {
 
 =head1 VERSION
 
-This document is for version 1.1
+This document is for version 1.2
 
 =cut
 
-our $VERSION = "1.1";
+our $VERSION = "1.2";
 
 =head1 SYNOPSIS
 
