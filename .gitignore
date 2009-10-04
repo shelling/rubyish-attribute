@@ -2,3 +2,7 @@ Makefile.old
 Makefile
 pm_to_blib
 blib
+*gz
+*bak
+*old
+MANIFEST
