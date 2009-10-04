@@ -41,8 +41,11 @@ our $VERSION = "1.1";
         use Rubyish::Attribute; 
         # import attr_accessor, attr_writer and attr_reader
 
-        attr_accessor "name", "color", "type"; 
+        BEGIN {
+          attr_accessor "name", "color", "type"; 
+        }
         # pass a list as the only one parameter
+        # invoke it in compile time to avoid using parenthesis when using instance variable as below
 
         # then create a constructer based on hashref
         sub new {
