@@ -14,5 +14,22 @@ sub new {
     $self;
 }
 
+sub instant_name {
+  my ($self, $new_name) = @_;
+  __name__() = $new_name;
+  __name__();
+}
+
+sub instant_color {
+  my ($self) = @_;
+  __color__();
+}
+
+sub instant_type {
+  my ($self) = @_;
+  __type__();
+}
+
+
 1;
 

@@ -1,4 +1,5 @@
 package Rubyish::Attribute;
+use 5.010;
 
 =head1 NAME
 
@@ -9,9 +10,11 @@ Rubyish::Attribute - ruby-like accessor builder: attr_accessor, attr_writer and 
 use Want;
 
 sub import {
+  my $caller = caller;
   for (qw(attr_accessor attr_reader attr_writer)) {
-    *{(caller)[0] . "::" . $_} = *{$_};
+    *{$caller . "::" . $_} = *{$_};
   }
+  eval qq{package $caller; use PadWalker qw(peek_my);};
 }
 
 
@@ -93,6 +96,7 @@ sub attr_accessor {
     my $package = caller;
     for my $field (@_) {
         *{"${package}::${field}"} = make_accessor($field);
+        make_instance_vars_accessor($package, $field);
     }
 }
 
@@ -126,6 +130,7 @@ sub attr_reader {
     my $package = caller;
     for my $field (@_) {
         *{"${package}::${field}"} = make_reader($field);
+        make_instance_vars_accessor($package, $field);
     }
 }
 
@@ -160,7 +165,18 @@ sub attr_writer {
     my $package = caller;
     for my $field (@_) {
         *{"${package}::${field}"} = make_writer($field);
+        make_instance_vars_accessor($package, $field);
     }
+}
+
+sub make_instance_vars_accessor {
+  no strict;
+  my ($package, $field) = @_;
+  eval qq|package $package;
+    sub __${field}__ : lvalue {
+      \${ peek_my(1)->{\'\$self\'} }->{$field};
+    }
+  |;
 }
 
 =head1 DEPENDENCE
@@ -197,9 +213,9 @@ please report bugs to <shelling at cpan.org> or <gugod at gugod.org>
 
 =head1 COPYRIGHT & LICENCE 
 
-Copyright © 2008 shelling, gugod, all rights reserved.
+Copyright (C) 2008 shelling, gugod, all rights reserved.
 
-This program is free software; you can redistribute it and/or modify it under the same terms as Perl itself.
+Release under MIT (X11) Lincence.
 
 =cut
 
