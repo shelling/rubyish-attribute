@@ -20,6 +20,6 @@ is      $oreo->instant_name("hello"),       "hello";
 is      $oreo->instant_color,               "black";
 is      $oreo->instant_type,                "unknown";
 
-eval { $oreo->__name__ };
+eval    { $oreo->__name__ };
 like    $@,                                 qr(protected),                          $@;
 

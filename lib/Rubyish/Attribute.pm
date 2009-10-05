@@ -100,6 +100,10 @@ sub make_accessor {
     my $field = shift;
     return sub {
         my ($self, $arg) = @_;
+
+        require Carp;
+        Carp::croak "error - ${field}() is a instance method" unless ref($self);
+
         if ($arg) {
             $self->{$field} = $arg;
             $self;
@@ -134,6 +138,10 @@ sub make_reader {
     my $field = shift;
     return sub {
         my ($self, $arg) = @_;
+        
+        require Carp;
+        Carp::croak "error - ${field}() is a instance method" unless ref($self);
+
         if ($arg) {
             warn "error - $field is only reader\n";
             return;             # because no writer
@@ -168,6 +176,10 @@ sub make_writer {
     my $field = shift;
     return sub {
         my ($self, $arg) = @_;
+
+        require Carp;
+        Carp::croak "error - ${field}() is a instance method" unless ref($self);
+
         if ($arg) {
             $self->{$field} = $arg;
             $self;
