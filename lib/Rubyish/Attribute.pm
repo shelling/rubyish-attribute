@@ -49,8 +49,16 @@ our $VERSION = "1.2";
 
         # then create a constructer based on hashref
         sub new {
-            $class = shift;
-            bless {}, $class;
+            my ($class, %args) = @_;
+            my $self = bless {}, $class;
+
+            __name__  = $args{name};
+            __color__ = $args{color};
+            __type__  = $args{type};
+
+            # remember above usage needs $self variable defined in the same scope;
+
+            $self;
         }
 
         sub rename_as {
@@ -106,8 +114,8 @@ sub attr_accessor {
     no strict;
     my $package = caller;
     for my $field (@_) {
-        *{"${package}::${field}"} = make_accessor($field);
         make_instance_vars_accessor($package, $field);
+        *{"${package}::${field}"} = make_accessor($field);
     }
 }
 
@@ -140,8 +148,8 @@ sub attr_reader {
     no strict;
     my $package = caller;
     for my $field (@_) {
-        *{"${package}::${field}"} = make_reader($field);
         make_instance_vars_accessor($package, $field);
+        *{"${package}::${field}"} = make_reader($field);
     }
 }
 
@@ -175,8 +183,8 @@ sub attr_writer {
     no strict;
     my $package = caller;
     for my $field (@_) {
-        *{"${package}::${field}"} = make_writer($field);
         make_instance_vars_accessor($package, $field);
+        *{"${package}::${field}"} = make_writer($field);
     }
 }
 
